@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\MobileAuthController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\TransaksiController;
+use App\Http\Controllers\Api\PlanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/transaksi', [TransaksiController::class, 'store']);
     Route::put('/transaksi/{id}', [TransaksiController::class, 'update']);
     Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy']);
+
+    Route::get('/plan', [PlanController::class, 'index']);  
+    Route::post('/plan', [PlanController::class, 'store']);
+    Route::get('/plan/{id}', [PlanController::class, 'show']);
+    Route::put('/plan/{id}', [PlanController::class, 'update']);
+    Route::delete('/plan/{id}', [PlanController::class, 'destroy']);
 });
 
 // Route publik
