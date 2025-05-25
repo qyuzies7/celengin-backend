@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\MobileAuthController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AdminAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,11 +25,19 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+// Route untuk login admin
+Route::post('/admin/login', [App\Http\Controllers\Api\AdminAuthController::class, 'login']);
+
 // Route terproteksi (memerlukan token)
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/profile', [AuthController::class, 'profile']);
     
+    Route::prefix('admin')->group(function () {
+        Route::get('/profile', [App\Http\Controllers\Api\AdminAuthController::class, 'profile']);
+        Route::post('/logout', [\App\Http\Controllers\Api\AdminAuthController::class, 'logout']);
+    });
+
     // Mengarahkan ke ApiService yang sudah dibuat (Income, Outcome)
     Route::prefix('income')->group(function () {
         Route::get('/', [App\Filament\Resources\IncomeResource\Api\Handlers\PaginationHandler::class, 'handler']);

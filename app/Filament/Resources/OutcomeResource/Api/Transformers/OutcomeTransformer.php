@@ -21,7 +21,7 @@ class OutcomeTransformer extends JsonResource
         return [
             'id' => $this->id,
             'nama' => $this->nama,
-            'icon' => $this->icon,
+            'icon' => $this->icon ? asset('storage/' . $this->icon) : null,
         ];
     }
 }
