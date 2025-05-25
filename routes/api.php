@@ -3,8 +3,10 @@
 use App\Http\Controllers\Api\MobileAuthController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AdminAuthController;
+use App\Http\Controllers\Api\TransaksiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 // Test route sederhana untuk debugging
 Route::get('/test', function() {
@@ -19,6 +21,11 @@ Route::post('/mobile/login', [MobileAuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/mobile/logout', [MobileAuthController::class, 'logout']);
     Route::get('/mobile/profile', [MobileAuthController::class, 'profile']);
+
+    Route::get('/transaksi', [TransaksiController::class, 'index']);
+    Route::post('/transaksi', [TransaksiController::class, 'store']);
+    Route::put('/transaksi/{id}', [TransaksiController::class, 'update']);
+    Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy']);
 });
 
 // Route publik

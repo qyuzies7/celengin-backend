@@ -14,6 +14,11 @@ class Pengguna extends Authenticatable
     protected $fillable = ['nama', 'email', 'password', 'terakhir_login'];
 
     protected $hidden = ['password'];
+   
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'pengguna_id');
+    }
 
     protected static function boot()
     {
