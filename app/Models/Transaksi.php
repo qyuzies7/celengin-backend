@@ -13,10 +13,6 @@ class Transaksi extends Model
 
     public $timestamps = true; 
 
-    protected $casts = [
-        'nominal' => 'encrypted',
-    ];
-
     public function pengguna()
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id');

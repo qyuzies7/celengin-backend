@@ -15,6 +15,7 @@ return [
             'driver' => 'sanctum',
             'provider' => 'penggunas',
             'hash' => false,
+            'expires' => 60*24, 
         ],
     ],
 

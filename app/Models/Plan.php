@@ -14,9 +14,6 @@ class Plan extends Model
         'periode_end',
         'nominal',
     ];
-    protected $casts = [
-        'nominal' => 'encrypted',
-    ];
     
     public function pengguna()
     {

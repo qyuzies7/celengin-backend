@@ -13,7 +13,7 @@ class AdminWidget extends BaseWidget
     protected function getStats(): array
     {
         // Data 7 hari terakhir
-        $chartDays = collect(range(6, 0))->map(function ($daysAgo) {
+        $chartDays = collect(range(7, 0))->map(function ($daysAgo) {
             return Carbon::today()->subDays($daysAgo);
         });
 

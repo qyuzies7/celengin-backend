@@ -43,6 +43,15 @@ class TransaksiController extends Controller
         $data['pengguna_id'] = $pengguna->id;
         $data['tanggal'] = $data['tanggal'] ?? now();
 
+        // Hanya simpan satu ID berdasarkan jenis
+        if ($data['jenis'] === 'income') {
+            $data['income_id'] = $data['income_id'];
+            unset($data['outcome_id']);
+        } else {
+            $data['outcome_id'] = $data['outcome_id'];
+            unset($data['income_id']);
+        }
+        
         $trx = Transaksi::create($data);
 
         return response()->json($trx, 201);
